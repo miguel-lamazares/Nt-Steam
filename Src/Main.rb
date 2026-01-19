@@ -26,6 +26,15 @@ if height < 10 || height > 40
   exit
 end
 clear_all()
+puts "Do you wanna invert colors? (y/n)"
+invert_colors = gets.chomp.downcase
+if invert_colors == 'y'
+  invert_option = "light"
+else
+  invert_option = "dark"
+end
+clear_all()
+
 image = MiniMagick::Image.open(image_path)
 
 image.colorspace "Gray"
@@ -44,8 +53,8 @@ if style_choice == 'y'
   chars = Menu.show_and_get_chars()
   clear_all()
   chars_value = chars.sub(/^--chars=/, '')
-  system("jp2a #{new_image_path} --background=dark --size=#{width}x#{height} #{chars_value}")
+  system("jp2a #{new_image_path} --background=#{invert_option} --size=#{width}x#{height} #{chars_value}")
 else
     clear_all()
-  system("jp2a #{new_image_path} --background=dark --size=#{width}x#{height}")
+  system("jp2a #{new_image_path} --background=#{invert_option} --size=#{width}x#{height}")
 end
