@@ -92,3 +92,7 @@ module Menu
         chars
      end
 end
+
+def steam_safe_text(text)
+  text.gsub(' ', "\u00A0")
+end

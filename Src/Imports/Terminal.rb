@@ -98,9 +98,11 @@ end
 
 def print_centralized_text(text)
   term_width = terminal_width
-  text.lines.each do |line|
-    clean_line = strip_ansi_codes(line.chomp)
-    padding = [(term_width - clean_line.length) / 2, 0].max
-    puts ' ' * padding + line.chomp
+
+  text.each_line do |line|
+    visible = strip_ansi_codes(line.chomp)
+    padding = [(term_width - visible.length) / 2, 0].max
+    puts (' ' * padding) + line.chomp
   end
 end
+

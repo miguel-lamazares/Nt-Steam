@@ -5,7 +5,25 @@ require_relative 'Imports/Terminal'
 require_relative 'Imports/logo'
 require_relative 'Imports/options'
 
-print_centralized_text("dex")
+
+# print_centralized_text(icon1)
+# print_centralized_text(icon2)
+# print_centralized_text(icon3)
+# print_centralized_text(icon4)
+# print_centralized_text(icon5)
+# print_centralized_text(icon6)
+
+# print_centralized_text(print_space)
+
+# print_centralized_text(icon7)
+# print_centralized_text(icon8)
+# print_centralized_text(icon9)
+# print_centralized_text(icon10)
+# print_centralized_text(icon11)
+# print_centralized_text(icon12)
+
+STDOUT.flush
+
 
 puts "Image Address: "
 image_path = gets.chomp
@@ -53,8 +71,13 @@ if style_choice == 'y'
   chars = Menu.show_and_get_chars()
   clear_all()
   chars_value = chars.sub(/^--chars=/, '')
-  system("jp2a #{new_image_path} --background=#{invert_option} --size=#{width}x#{height} #{chars_value}")
+  output = `jp2a #{new_image_path} --background=#{invert_option} --size=#{width}x#{height} #{chars_value}`
+  puts steam_safe_text(output)
+
 else
-    clear_all()
-  system("jp2a #{new_image_path} --background=#{invert_option} --size=#{width}x#{height}")
+  clear_all()
+  output = `jp2a #{new_image_path} --background=#{invert_option} --size=#{width}x#{height}`
+  puts steam_safe_text(output)
 end
+
+
