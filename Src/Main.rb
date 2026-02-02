@@ -4,6 +4,7 @@ require 'fileutils'
 require_relative 'Imports/Terminal'
 require_relative 'Imports/logo'
 require_relative 'Imports/options'
+require_relative 'Imports/requests'
 
 
 # print_centralized_text(icon1)
@@ -28,6 +29,12 @@ STDOUT.flush
 puts "Image Address: "
 image_path = gets.chomp
 clear_all()
+
+if image_path.start_with?("https:") or image_path.start_with?("http:")
+  folder = 'Src/IMG'
+  download(image_path, folder)
+  image_path = "#{folder}/img.png"
+end
 
 puts "What size do you wanna convert to? from 40x10 to 100x40"
 puts "Width: "    
